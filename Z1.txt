@@ -1,0 +1,85 @@
+import React, { useState } from 'react';
+import { Button, Grid } from 'antd';
+import {
+  CaretLeftOutlined,
+  CaretRightOutlined,
+  CaretUpOutlined,
+  CaretDownOutlined,
+} from '@ant-design/icons';
+
+const { useBreakpoint } = Grid;
+
+function Page2() {
+  const screens = useBreakpoint();
+  const [gridPosition, setGridPosition] = useState({ row: 1, col: 1 });
+
+  const handleMoveLeft = () => {
+    if (gridPosition.col > 1) {
+      setGridPosition((prevPosition) => ({ ...prevPosition, col: prevPosition.col - 1 }));
+    }
+  };
+
+  const handleMoveRight = () => {
+    if (gridPosition.col < 3) {
+      setGridPosition((prevPosition) => ({ ...prevPosition, col: prevPosition.col + 1 }));
+    }
+  };
+
+  const handleMoveUp = () => {
+    if (gridPosition.row > 1) {
+      setGridPosition((prevPosition) => ({ ...prevPosition, row: prevPosition.row - 1 }));
+    }
+  };
+
+  const handleMoveDown = () => {
+    if (gridPosition.row < 2) {
+      setGridPosition((prevPosition) => ({ ...prevPosition, row: prevPosition.row + 1 }));
+    }
+  };
+
+  const handleRandomPosition = () => {
+    setGridPosition({
+      row: Math.floor(Math.random() * 2) + 1,
+      col: Math.floor(Math.random() * 3) + 1,
+    });
+  };
+
+  return (
+    <div style={{ justifyContent: 'center', alignItems: 'center', height: '100vh', paddingTop:"5%", paddingRight:"15%" , paddingLeft:"15%"}}>
+      <div style={{ marginTop: 20 }}>
+        <Button type="primary" shape="round" icon={<CaretLeftOutlined />} onClick={handleMoveLeft} style={{ backgroundColor:"#ffa200" }} />
+        <Button type="primary" shape="round" icon={<CaretRightOutlined />} onClick={handleMoveRight} style={{ margin: '0 8px', backgroundColor:"#ffa200" }} />
+        <Button type="primary" shape="round" icon={<CaretUpOutlined />} onClick={handleMoveUp} style={{ backgroundColor:"#ffa200" }} />
+        <Button type="primary" shape="round" icon={<CaretDownOutlined />} onClick={handleMoveDown} style={{ margin: '0 8px', backgroundColor:"#ffa200" }} />
+        <Button type="primary" shape="round" onClick={handleRandomPosition} style={{ marginLeft: 8, backgroundColor:"#ffa200" }}>Random Position</Button>
+      </div>
+      <br/>
+      <div>
+        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+          {[...Array(2)].map((_, row) =>
+            [...Array(3)].map((_, col) => (
+              <div
+                key={`${row}-${col}`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: row + 1 === gridPosition.row && col + 1 === gridPosition.col ? '#ffa200 ' : '#f0f0f0',
+                  borderRadius: 4,
+                  padding: 16,
+                  color: '#fff',
+                  fontWeight: 'bold',
+                  fontSize: screens.xs ? 16 : 24,
+                }}
+              >
+                {row * 3 + col + 1}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Page2;

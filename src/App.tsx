@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Page1 from './pages/Page1';
+import Page2 from './pages/Page2';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+import './styles/styles.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <I18nextProvider i18n={i18n}>
+        <Routes>
+          <Route path="/" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
+        </Routes>
+      </I18nextProvider>
+    </BrowserRouter>
   );
 }
 

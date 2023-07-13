@@ -1,0 +1,61 @@
+/* Page.scss */
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+
+  .page-container-2 {
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin-left: 25%;
+    margin-top: 5%;
+  }
+
+  .page-button {
+    background-color:#ffa200 ;
+    color: #6eda78 ;
+    border-radius: 4px;
+    padding-left: 25%;
+    font-weight: bold;
+    font-size: 16px;   
+  }
+
+  .page-language{
+    display: flex;
+    align-items: center;
+    padding: 2em;
+    margin-left: 90%;
+    
+  }
+  
+  .page-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 16px;
+    margin-top: 3%;
+
+    
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #6eda78 ;
+      border-radius: 4px;
+      padding: 9px;
+      color: #000000;
+      font-weight: bold;
+      font-size: 24px;
+  
+    }
+  
+    .grid-item-1 {
+      background-color: #ffa200 ;
+      padding: 4% 35% 4% 35% ;
+      
+    }
+  }
+  
